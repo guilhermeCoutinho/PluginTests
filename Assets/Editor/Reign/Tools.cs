@@ -254,10 +254,6 @@ namespace Reign.EditorTools
 				var productName = PlayerSettings.productName;
 				#endif
 				
-				#if UNITY_5
-				if (EditorUserBuildSettings.wsaSDK == WSASDK.UniversalSDK81 && EditorUserBuildSettings.activeBuildTarget != BuildTarget.WP8Player)
-				#else
-				#endif
 				var projPath = string.Format("{0}/{1}/{1}.csproj", pathToBuiltProject, productName);
 				Debug.Log("Modifying Proj: " + projPath);
 
@@ -265,6 +261,7 @@ namespace Reign.EditorTools
 				addPostProjectCompilerDirectives(doc);
 				addPostProjectReferences(doc, pathToBuiltProject, "", productName, "");
 				doc.Save(projPath);
+			
 			}
 			#if UNITY_IOS && UNITY_5
 			else if (target == BuildTarget.iOS)
